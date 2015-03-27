@@ -12,14 +12,14 @@
           </div>
 
           <div class="field">
-            <%= f.label :transactioner_email_cont, Spree.t(:transactioner_email) %>
-            <%= f.email_field :transactioner_email_cont %>
+            <%= f.label :transactioner_mobile_cont, Spree.t(:transactioner_mobile) %>
+            <%= f.mobile_field :transactioner_mobile_cont %>
           </div>
 
           <% unless @user %>
             <div class="field">
-              <%= f.label :user_email_cont, Spree.t(:user_email) %>
-              <%= f.email_field :user_email_cont %>
+              <%= f.label :user_mobile_cont, Spree.t(:user_mobile) %>
+              <%= f.mobile_field :user_mobile_cont %>
             </div>
           <% end %>
         </div>
@@ -36,7 +36,7 @@
 
 <% content_for :page_title do %>
   <% if @user %>
-    <%= Spree.t(:store_credits_for_user_email, user_email: @user.email) %> (<%= Spree.t(:current_balance_for_user, total: @user.store_credits_total) %>)
+    <%= Spree.t(:store_credits_for_user_mobile, user_mobile: @user.mobile) %> (<%= Spree.t(:current_balance_for_user, total: @user.store_credits_total) %>)
   <% else %>
     <%= Spree.t(:listing_store_credits) %>
   <% end %>
@@ -58,9 +58,9 @@
     <tr>
       <th><%= sort_link @search, :transaction_id, Spree.t(:transaction_number) %></th>
       <% unless @user %>
-        <th><%= sort_link @search, :user_email, Spree.t(:user) %></th>
+        <th><%= sort_link @search, :user_mobile, Spree.t(:user) %></th>
       <% end %>
-      <th><%= sort_link @search, :transactioner_email, Spree.t(:transactioner_email) %></th>
+      <th><%= sort_link @search, :transactioner_mobile, Spree.t(:transactioner_mobile) %></th>
       <th><%= sort_link @search, :amount, Spree.t(:amount) %></th>
       <th><%= sort_link @search, :balance, Spree.t(:balance) %></th>
       <% if @user %>
@@ -78,9 +78,9 @@
       <tr id="<%= cycle('odd', 'even') %>">
         <td class="align-center"><%= store_credit.transaction_id %></td>
         <% unless @user %>
-          <td class="align-center"><%= link_to store_credit.user.email, admin_user_path(store_credit.user) %></td>
+          <td class="align-center"><%= link_to store_credit.user.mobile, admin_user_path(store_credit.user) %></td>
         <% end %>
-        <td class="align-center"><%= store_credit.transactioner.try(:email) %></td>
+        <td class="align-center"><%= store_credit.transactioner.try(:mobile) %></td>
         <td class="align-center"><%= number_to_currency store_credit.amount %></td>
         <td class="align-center"><%= number_to_currency store_credit.balance %></td>
         <% if @user %>
